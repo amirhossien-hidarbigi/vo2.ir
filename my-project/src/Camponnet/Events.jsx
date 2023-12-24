@@ -30,17 +30,30 @@ const CountryFlag = ({ countryName, style }) => {
   );
 };
 
+const EventItem = ({ event }) => (
+  <div className="flex items-center p-2 mb-2 gap-8 rounded-md cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105">
+    <div className="text-base mr-2">{event.event_date}</div>
+    <CountryFlag
+      countryName={event.location}
+      style={{ width: "25px", height: "25px", borderRadius: "2px" }}
+    />
+    <div className="text-lg font-bold">{event.name}</div>
+  </div>
+);
+
 const Events = () => {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("https://vo2.ir/api/getEvents");
-
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -48,13 +61,15 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="p-4 rounded-md  md:flex justify-around mt-10">
-      {data && (
+    <div className="p-4 rounded-md md:flex justify-around mt-10">
+      {loading && <p>Loading...</p>}
+
+      {data && Array.isArray(data.data) && (
         <div className="flex flex-col p-10 gap-1">
-          {data.map(event => (
+          {data.data.map(event => (
             <div
               key={event.id}
-              className="flex items-center p-2 mb-2 gap-8  rounded-md  cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="flex items-center p-2 mb-2 gap-8 rounded-md cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <div className="text-base mr-2">{event.event_date}</div>
               <CountryFlag
@@ -66,12 +81,12 @@ const Events = () => {
           ))}
         </div>
       )}
-      {data && (
+      {data && Array.isArray(data.data) && (
         <div className="flex flex-col p-10 gap-1">
-          {data.map(event => (
+          {data.data.map(event => (
             <div
               key={event.id}
-              className="flex items-center p-2 mb-2 gap-8  rounded-md  cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="flex items-center p-2 mb-2 gap-8 rounded-md cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <div className="text-base mr-2">{event.event_date}</div>
               <CountryFlag

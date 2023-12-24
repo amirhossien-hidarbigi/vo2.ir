@@ -16,7 +16,7 @@ function Header() {
       .then(response => {
         console.log(response.data);
 
-        const responseData = response.data.data; // Access the 'data' property
+        const responseData = response.data.data;
 
         const eventsWithTimeDifference = responseData.map((event, index) => {
           const eventDate = new Date(event.event_date);

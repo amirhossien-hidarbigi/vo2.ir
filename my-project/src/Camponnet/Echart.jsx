@@ -13,9 +13,16 @@ const Echart = () => {
           "https://vo2.ir/api/getChartsData"
         );
 
-        if (chartResponse.data.length > 0) {
-          setCtlValue(chartResponse.data[0].ctl);
-          setChartData(chartResponse.data);
+        if (
+          chartResponse.data.status === "success" &&
+          chartResponse.data.data.length > 0
+        ) {
+          setCtlValue(chartResponse.data.data[0].ctl);
+          setChartData(chartResponse.data.data);
+        } else {
+          console.error(
+            "Empty chart data received or invalid response format."
+          );
         }
       } catch (error) {
         console.error("Error fetching chart data:", error);
@@ -24,7 +31,6 @@ const Echart = () => {
 
     fetchData();
   }, []);
-
   const option = {
     title: {},
     backgroundColor: "",
@@ -37,7 +43,7 @@ const Echart = () => {
     },
     xAxis: {
       type: "category",
-      data: chartData.map(item => item.ctl),
+      data: chartData.map(item => item.workoutDay),
       splitLine: {
         show: false,
       },
