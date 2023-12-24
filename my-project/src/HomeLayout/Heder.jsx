@@ -4,7 +4,6 @@ import SettingIcon from "../assets/Setting.svg";
 import DateIcon from "../assets/Calendar.svg";
 import Action from "../assets/action.svg";
 import { useSidebar } from "../App";
-import PersianDatePicker from "react-multi-date-picker";
 
 function Header() {
   const [optionsData, setOptionsData] = useState([]);
@@ -17,7 +16,9 @@ function Header() {
       .then(response => {
         console.log(response.data);
 
-        const eventsWithTimeDifference = response.data.map((event, index) => {
+        const responseData = response.data.data; // Access the 'data' property
+
+        const eventsWithTimeDifference = responseData.map((event, index) => {
           const eventDate = new Date(event.event_date);
           eventDate.setHours(0, 0, 0, 0);
 
