@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Iransans";
+  src: url("./assets/IranSansX/IranSansX(Pro)/iransansX family/IRANSansX-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Iransans";
+  src: url("./assets/IranSansX/IranSansX(Pro)/iransansX family/IRANSansX-Bold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Iransans";
+  src: url("./assets/IranSansX/IranSansX(Pro)/iransansX family/IRANSansX-Light.ttf")
+    format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Iransans";
+  src: url("./assets/IranSansX/IranSansX(Pro)/iransansX family/IRANSansX-Medium.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: medium;
+}
+
+@font-face {
+  font-family: "Iransans";
+  src: url("./assets/IranSansX/IranSansX(Pro)/Farsi numerals/IRANSansXFaNum-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "Iransans", sans-serif;
+}
+/* SideBar.css */
+
+.icon-svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  fill: #fff;
+}
+
+.app-container {
+  position: relative;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -15%;
+  width: 15%;
+  height: 100%;
+  background-color: #fff;
+  transition: left 0.3s ease-out;
+  z-index: 1;
+}
+
+.sidebar-open {
+  left: 0;
+}
+
+.content {
+  background-color: #fcfcfc;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
